@@ -44,31 +44,31 @@ class TrainType:
 
 class Train():
     def __init__(self, train_info):
-        self.열차번호 = int(train_info.get('h_trn_no'))  #"161"
-        self.열차종류 = train_info.get('h_trn_clsf_nm')  #"KTX-산천"
-        self.열차종류코드 = train_info.get('h_trn_clsf_cd')
-        self.열차그룹 = train_info.get('h_trn_gp_nm')  #"KTX"
-        self.열차그룹코드 = train_info.get('h_trn_gp_cd')  #"100"
-        self.경유 = train_info.get('h_dtour_txt')  #"-", "구포정차", "수원정차"
+        self.no = int(train_info.get('h_trn_no'))  #"161"
+        self.type = train_info.get('h_trn_clsf_nm')  #"KTX-산천"
+        self.type_code= train_info.get('h_trn_clsf_cd')
+        self.group = train_info.get('h_trn_gp_nm')  #"KTX"
+        self.group_code = train_info.get('h_trn_gp_cd')  #"100"
+        self.stopby = train_info.get('h_dtour_txt')  #"-", "구포정차", "수원정차"
 
-        self.운행일 = train_info.get('h_run_dt')
-        self.출발역 = train_info.get('h_dpt_rs_stn_nm')
-        self.출발역코드= train_info.get('h_dpt_rs_stn_cd')
-        self.출발일 = train_info.get('h_dpt_dt')
-        self.출발시간 = train_info.get('h_dpt_tm')  #"073000"
+        self.rundate = train_info.get('h_run_dt')
+        self.dep = train_info.get('h_dpt_rs_stn_nm')
+        self.dep_code = train_info.get('h_dpt_rs_stn_cd')
+        self.dep_date = train_info.get('h_dpt_dt')
+        self.dep_time = train_info.get('h_dpt_tm')  #"073000"
 
-        self.도착역 = train_info.get('h_arv_rs_stn_nm')
-        self.도착역코드 = train_info.get('h_arv_rs_stn_cd')
-        self.도착일 = train_info.get('h_arv_dt')
-        self.도착시간 = train_info.get('h_arv_tm')  #"204400"
+        self.arr = train_info.get('h_arv_rs_stn_nm')
+        self.arr_code = train_info.get('h_arv_rs_stn_cd')
+        self.arr_date = train_info.get('h_arv_dt')
+        self.arr_time = train_info.get('h_arv_tm')  #"204400"
 
-        self.예약가능 = train_info.get('h_rsv_psb_flg')  #"Y", "N"
-        self.특실 = train_info.get('h_gen_rsv_nm')  #"매진", "예약하기"
-        self.일반실 = train_info.get('h_gen_rsv_nm')
-        self.입석 = train_info.get('h_stnd_rsv_nm')  #"역발매중"
+        self.reservable = train_info.get('h_rsv_psb_flg')  #"Y", "N"
+        self.rsv_special = train_info.get('h_gen_rsv_nm')  #"매진", "예약하기"
+        self.rsv_general = train_info.get('h_gen_rsv_nm')
+        self.rsv_stand = train_info.get('h_stnd_rsv_nm')  #"역발매중"
 
-        self.요금 = int(train_info.get('h_rcvd_amt')) #"00000000048800": 48,800원
-        self.마일리지적립률 = float(train_info.get('h_train_disc_gen_rt')) * -1 #"-005.00": 5%
+        self.fee = int(train_info.get('h_rcvd_amt')) #"00000000048800": 48,800원
+        self.mile_rate = float(train_info.get('h_train_disc_gen_rt')) * -1 #"-005.00": 5%
 
         #print("{}\t{}({})\t\t{}\t{}\t{}\t{}".format(self.열차번호, self.열차그룹, self.열차종류, self.예약가능,
         #                                            self.요금, self.마일리지적립률, self.경유))

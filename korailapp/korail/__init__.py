@@ -29,8 +29,8 @@ def reserveThread():
                 continue
 
             for train in trains:
-                if train.예약가능 == "Y" and train.열차그룹코드 == r.train_type:
-                    if (train.열차그룹 == "KTX" and train.요금 > 50000):
+                if train.reservable == "Y" and train.group_code == r.train_type:
+                    if (train.group_code == "KTX" and train.fee > 50000):
                         continue
 
                     # reserve
@@ -43,13 +43,13 @@ def reserveThread():
                     # send push
                     pb = PushBullet("o.F9hgFDT4awcXH2XHZ390ECvXj1JmGj0F")
                     title = "{} {}행 ({}-{})".format(
-                        train.열차그룹, train.도착역, train.출발일[-4:], train.출발시간[:4]
+                        train.group, train.arr, train.dep_date[-4:], train.dep_time[:4]
                     )
                     note = "{} {}->{} ({} {}~{}) 요금: {}".format(
-                        train.열차종류,
-                        train.출발역, train.도착역,
-                        train.출발일[-4:], train.출발시간[:4], train.도착시간[:4],
-                        train.요금
+                        train.type,
+                        train.dep, train.arr,
+                        train.dep_date[-4:], train.dep_time[:4], train.arr_time[:4],
+                        train.fee
                     )
                     pb.push_note(title, note)
                     break
