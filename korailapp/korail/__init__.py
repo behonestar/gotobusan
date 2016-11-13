@@ -42,15 +42,8 @@ def reserveThread():
 
                     # send push
                     pb = PushBullet("o.F9hgFDT4awcXH2XHZ390ECvXj1JmGj0F")
-                    title = "{} {}행 ({}-{})".format(
-                        train.group, train.arr, train.dep_date[-4:], train.dep_time[:4]
-                    )
-                    note = "{} {}->{} ({} {}~{}) 요금: {}".format(
-                        train.type,
-                        train.dep, train.arr,
-                        train.dep_date[-4:], train.dep_time[:4], train.arr_time[:4],
-                        train.fee
-                    )
+                    title = "%s %s (%s-%s)" % (train.group, train.arr, train.dep_date[-4:], train.dep_time[:4])
+                    note = "%s %s->%s (%s %s-%s) %s" % (train.type, train.dep, train.arr, train.dep_date[-4:], train.dep_time[:4], train.arr_time[:4], train.fee)
                     pb.push_note(title, note)
                     break
 
