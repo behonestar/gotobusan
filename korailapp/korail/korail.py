@@ -184,15 +184,15 @@ class Korail():
             # 여정 정보1
             'txtJrnySqno1': '001',
             'txtJrnyTpCd1': '11',
-            'txtDptDt1': train.출발일,
-            'txtDptRsStnCd1': train.출발역코드,
-            'txtDptTm1': train.출발시간,
-            'txtArvRsStnCd1': train.도착역코드,
-            'txtTrnNo1': train.열차번호,
-            'txtRunDt1': train.운행일,
-            'txtTrnClsfCd1': train.열차종류코드,
+            'txtDptDt1': train.dep_date,
+            'txtDptRsStnCd1': train.dep_code,
+            'txtDptTm1': train.dep_time,
+            'txtArvRsStnCd1': train.arr_code,
+            'txtTrnNo1': train.no,
+            'txtRunDt1': train.rundate,
+            'txtTrnClsfCd1': train.type_code,
             'txtPsrmClCd1': SeatType.GENERAL,
-            'txtTrnGpCd1': train.열차그룹코드,
+            'txtTrnGpCd1': train.group_code,
             'txtChgFlg1': '',
 
             # 탑승 정보1
