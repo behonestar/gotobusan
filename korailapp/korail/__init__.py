@@ -5,6 +5,7 @@ from .korail import Korail
 from pushbullet import PushBullet
 import threading, time
 
+
 def reserveThread():
     korail_list = {}
 
@@ -56,5 +57,5 @@ def reserveThread():
         time.sleep(10)
 
 th = threading.Thread(target=reserveThread)
-# th.start()
+th.start()
 #th.join()
