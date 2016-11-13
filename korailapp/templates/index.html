@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% if next %}
+        {% if user.is_authenticated %}
+        <p>권한이 없는 페이지에 접근하였으니, 권한이 있는 계정으로 로그인하세요.</p>
+        {% else %}
+        <p>이 페이지를 보려면 로그인을 해야 합니다.</p>
+        {% endif %}
+    {% endif %}
+
+    <form method="post" action="{% url 'reservation' %}">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>멤버십번호(0973302701)</td>
+                <td><input type="text" name="username"></td>
+            </tr>
+            <tr>
+                <td>비밀번호</td>
+                <td><input type="password" name="password"></td>
+            </tr>
+            <tr>
+                <td>열차종류</td>
+                <td>
+                    <select name="train_type">
+                        <option value="100">KTX</option>
+                        <option value="102">무궁화</option>
+                        <option value="101">새마을</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>출발역(ex.서울)</td>
+                <td><input type="text" name="dep"></td>
+            </tr>
+            <tr>
+                <td>도착역(ex.부산)</td>
+                <td><input type="text" name="arr"></td></td>
+            </tr>
+            <tr>
+                <td>출발일(ex.20160123)</td>
+                <td><input type="text" name="date"></td></td>
+            </tr>
+            <tr>
+                <td>출발시간(ex.180000)</td>
+                <td><input type="text" name="time"></td></td>
+            </tr>
+        </table>
+
+        <input type="submit" value="예약 대기" />
+        <input type="hidden" name="next" value="{{ next }}" />
+    </form>
+
+    <table border="1">
+        <tr>
+            <td>사용자</td>
+            <td>열차그룹코드</td>
+            <td>출발역</td>
+            <td>도착역</td>
+            <td>출발일</td>
+            <td>출발시간</td>
+            <td>최근조회일</td>
+            <td>예약번호</td>
+            <td>삭제</td>
+        </tr>
+        {% if reserve_list %}
+            {% for reserve in reserve_list %}
+            <tr>
+                <td>{{ reserve.username }}</td>
+                <td>{{ reserve.train_type }}</td>
+                <td>{{ reserve.dep }}</td>
+                <td>{{ reserve.arr }}</td>
+                <td>{{ reserve.date }}</td>
+                <td>{{ reserve.time }}</td>
+                <td>{{ reserve.updated }}</td>
+                <td>{{ reserve.rsv_code }}</td>
+                <td><a href="{% url 'delete_reservation' pk=reserve.id%}">삭제</a></td>
+            </tr>
+            {% endfor %}
+        {% endif %}
+    </table>
+
+</body>
+</html>
