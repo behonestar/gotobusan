@@ -64,7 +64,6 @@
             <td>도착역</td>
             <td>출발일</td>
             <td>출발시간</td>
-            <td>최근조회일</td>
             <td>예약번호</td>
             <td>삭제</td>
         </tr>
@@ -77,8 +76,7 @@
                 <td>{{ reserve.arr }}</td>
                 <td>{{ reserve.date }}</td>
                 <td>{{ reserve.time }}</td>
-                <td>{{ reserve.updated }}</td>
-                <td>{{ reserve.rsv_code }}</td>
+                <td>{{ reserve.reserve_code }}</td>
                 <td><a href="{% url 'delete_reservation' pk=reserve.id%}">삭제</a></td>
             </tr>
             {% endfor %}

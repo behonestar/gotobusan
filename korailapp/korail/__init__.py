@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
-from django.utils import timezone
 from korailapp.models import ReserveQueue
 from .korail import Korail
 from pushbullet import PushBullet
@@ -10,7 +9,7 @@ def reserveThread():
     korail_list = {}
 
     while True:
-        reserves = ReserveQueue.objects.filter(reserv_code=None)
+        reserves = ReserveQueue.objects.filter(reserve_code=None)
         for r in reserves:
             korail = korail_list.get(r.username)
             if not korail:
