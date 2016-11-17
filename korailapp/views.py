@@ -37,7 +37,7 @@ class KorailView(View):
             arr=arr,
             date=date,
             time=time,
-            train_type=train_type
+            train_type=train_type,
         )
         return redirect('/korail/')
 

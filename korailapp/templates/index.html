@@ -65,6 +65,7 @@
             <td>출발일</td>
             <td>출발시간</td>
             <td>예약번호</td>
+            <td>조회일</td>
             <td>삭제</td>
         </tr>
         {% if reserve_list %}
@@ -77,6 +78,7 @@
                 <td>{{ reserve.date }}</td>
                 <td>{{ reserve.time }}</td>
                 <td>{{ reserve.reserve_code }}</td>
+                <td>{{ reserve.updated }}</td>
                 <td><a href="{% url 'delete_reservation' pk=reserve.id%}">삭제</a></td>
             </tr>
             {% endfor %}

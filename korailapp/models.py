@@ -9,3 +9,4 @@ class ReserveQueue(models.Model):
     date = models.CharField(max_length=32)
     time = models.CharField(max_length=32)
     reserve_code = models.CharField(max_length=32, null=True)
+    updated = models.DateTimeField(auto_now=True)

@@ -3,8 +3,19 @@ from __future__ import print_function
 from korailapp.models import ReserveQueue
 from .korail import Korail
 from pushbullet import PushBullet
+from datetime import datetime, timedelta
 import threading, time
 
+
+def get_signed_in_korail(korail_list, username, password):
+    obj = korail_list.get(username)
+    if obj and obj.get('expired') > datetime.now():
+        return obj.get('korail')
+
+    korail = Korail(username, password)
+    korail.login()
+    korail_list[username] = {'korail': korail, 'expired': datetime.now() + timedelta(minutes=15)}
+    return korail
 
 def reserveThread():
     korail_list = {}
@@ -12,17 +23,9 @@ def reserveThread():
     while True:
         reserves = ReserveQueue.objects.filter(reserve_code=None)
         for r in reserves:
-            korail = korail_list.get(r.username)
-            if not korail:
-                korail = Korail(r.username, r.password)
-                try:
-                    korail.login()
-                except Exception as e:
-                    print (e)
-                    continue
-                korail_list[r.username] = korail
-
+            r.save()
             try:
+                korail = get_signed_in_korail(korail_list, r.username, r.password)
                 trains = korail.search_train(r.dep, r.arr, r.date, r.time, r.train_type)
             except Exception as e:
                 print (e)
