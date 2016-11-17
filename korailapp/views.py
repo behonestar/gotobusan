@@ -27,8 +27,10 @@ class KorailView(View):
         train_type = request.POST.get('train_type')
 
         korail = Korail(username, password)
-        if not korail.login():
-            return HttpResponse("Login fail")
+        try:
+            korail.login()
+        except Exception as e:
+            return HttpResponse(e)
 
         ReserveQueue.objects.create(
             username=username,
